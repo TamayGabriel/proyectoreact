@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "77ba747ffdb6cf86819b3872ee431d9b",
+    "revision": "f4e3e30b1929c49bbe87bf7627ce18da",
     "url": "/proyectoreact/index.html"
   },
   {
-    "revision": "17a47cc3813cc78198cc",
+    "revision": "4d41f738a9514bdf2114",
     "url": "/proyectoreact/static/css/main.0e67ca84.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/proyectoreact/static/js/2.c1851cc1.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "17a47cc3813cc78198cc",
-    "url": "/proyectoreact/static/js/main.cf6635d0.chunk.js"
+    "revision": "4d41f738a9514bdf2114",
+    "url": "/proyectoreact/static/js/main.470d9db2.chunk.js"
   },
   {
     "revision": "0b57d0f0133887da33b7",

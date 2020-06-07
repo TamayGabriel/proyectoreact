@@ -126,7 +126,7 @@ function SidebarResp(props) {
             <MenuIcon />
           </IconButton>
           <div className={classes.titlenav}>
-            <h2>Timi Library</h2>
+            <h2>Timi's Library</h2>
           </div>
         </Toolbar>
       </AppBar>

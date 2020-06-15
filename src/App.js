@@ -6,13 +6,7 @@ import { AccessAlarm, ThreeDRotation } from "@material-ui/icons";
 // data
 import { todos } from "./todos.json";
 
-// subcomponents
-import TodoForm from "./components/LibroBuscador";
-import LibroBuscador from "./components/LibroBuscador";
-
-import Sidebar from "./components/Sidebar";
 import SidebarResp from "./components/SidebarResp";
-import Album from "./components/Album";
 
 //Fin imports
 

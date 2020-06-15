@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+/*
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -33,6 +34,38 @@ class Search extends React.Component {
 
 Search.propTypes = {
   handleSearch: PropTypes.func.isRequired,
-};
+};*/
+
+function Search(props) {
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearchInputChanges = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const resetInputField = () => {
+    setSearchValue("");
+  };
+
+  const callSearchFunction = (e) => {
+    e.preventDefault();
+    props.search(searchValue);
+    resetInputField();
+  };
+
+  return (
+    <div className="search-container">
+      <input
+        value={searchValue}
+        onChange={handleSearchInputChanges}
+        type="text"
+        className="search-input"
+      />
+      <button className="search-btn" onClick={callSearchFunction}>
+        Search
+      </button>
+    </div>
+  );
+}
 
 export default Search;

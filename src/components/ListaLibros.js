@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
 import BookCard from "./BookCard";
 import { GetLibrosByVolumes, getLibrosBySearch } from "../services/libros";
 import Search from "./Search";
-
+/*
 class ListaLibros extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +22,7 @@ class ListaLibros extends React.Component {
     this.setState({ libros: responseJson.items, isFetch: false });
   }
 
-  handleSearch = async (search) => {
+  search = async (search) => {
     const responseJson = await getLibrosBySearch(search);
     if (responseJson.totalItems > 0) {
       this.setState({
@@ -38,14 +38,14 @@ class ListaLibros extends React.Component {
   };
 
   render() {
-    const { libros, isFetch, notFound } = this.state;
-    /*if (this.state.isFetch) {
+    const { libros, search, isFetch, notFound } = this.state;
+    if (this.state.isFetch) {
       return "Loading...";
-    }*/
+    }
 
     return (
       <>
-        <Search handleSearch={this.handleSearch} />
+        <Search search={search} />
         {isFetch && "loading..."}
 
         {notFound && "No books found"}
@@ -66,5 +66,53 @@ class ListaLibros extends React.Component {
     );
   }
 }
+
+export default ListaLibros;*/
+
+const ListaLibros = () => {
+  const [isFetch, setIsFetch] = useState(true);
+  const [libros, setLibros] = useState([]);
+  const [notFound, setNotFound] = useState(null);
+
+  /*async componentDidMount() {
+    const responseJson = await GetLibrosByVolumes();
+    this.setState({ libros: responseJson.items, isFetch: false });
+  }*/
+
+  const search = async (search) => {
+    setIsFetch(true);
+
+    const responseJson = await getLibrosBySearch(search);
+    if (responseJson.totalItems > 0) {
+      setLibros(responseJson.items);
+      setNotFound(false);
+    } else {
+      setLibros([]);
+      setNotFound(typeof responseJson.items === "undefined");
+    }
+  };
+
+  return (
+    <>
+      <Search search={search} />
+      {isFetch && "loading..."}
+
+      {notFound && "No books found"}
+      <div className="book-card-root">
+        <Grid container spacing={3}>
+          {libros.map((libro) => (
+            <BookCard
+              name={libro.volumeInfo.title}
+              subtitle={libro.volumeInfo.subtitle}
+              id={libro.id}
+              key={libro.id}
+              imageUrl="https://cdn.pixabay.com/photo/2017/01/13/14/26/book-1977396_960_720.png"
+            />
+          ))}
+        </Grid>
+      </div>
+    </>
+  );
+};
 
 export default ListaLibros;

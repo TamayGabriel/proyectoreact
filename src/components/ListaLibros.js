@@ -79,15 +79,28 @@ const ListaLibros = () => {
     this.setState({ libros: responseJson.items, isFetch: false });
   }*/
 
+  useEffect(async () => {
+    const responseJson = await GetLibrosByVolumes();
+    console.log(responseJson);
+    if (responseJson.totalItems > 0) {
+      setLibros(responseJson.items);
+      setNotFound(false);
+      setIsFetch(false);
+    }
+  }, []);
+
   const search = async (search) => {
+    setLibros([]);
     setIsFetch(true);
 
     const responseJson = await getLibrosBySearch(search);
     if (responseJson.totalItems > 0) {
       setLibros(responseJson.items);
       setNotFound(false);
+      setIsFetch(false);
     } else {
       setLibros([]);
+      setIsFetch(false);
       setNotFound(typeof responseJson.items === "undefined");
     }
   };
